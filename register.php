@@ -31,7 +31,7 @@ if (isLogged()) {
             <div class="container">
                 <div class='row justify-content-center mt-3'>
 
-                    <form action="save_register.php" onsubmit="return passwordOK(this)" method="POST" >
+                    <form action="user_register.php" onsubmit="return passwordOK(this)" method="POST" >
 
                         <div class="form-group">
                             <label for="inputUserName">User Name</label>

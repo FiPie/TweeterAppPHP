@@ -11,7 +11,7 @@ if (!isLogged()) {
 $con = connectDatabase();
 $messageID = mysqli_real_escape_string($con, $messageID);
 
-$activeHref = "edit.php?messageID=$messageID";
+$activeHref = "message_edit.php?messageID=$messageID";
 $activePageIcon = '<i class="far fa-comment-dots"></i>';
 
 $query = "SELECT * FROM messages WHERE messageID='$messageID'";
@@ -52,7 +52,7 @@ mysqli_close($con);
 
             <div class="container">
                 <div class='row justify-content-center mt-3'>
-                    <form action="update.php" method="POST">
+                    <form action="message_update.php" method="POST">
                         <input type="hidden" name="messageID" value="<?= $messageID ?>">
                         <input type="hidden" name="authorID" value="<?= $authorID ?>"">
                         <div class="form-group">

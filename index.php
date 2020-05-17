@@ -4,13 +4,13 @@ $activeHref = 'index.php';
 $activePageIcon = '<i class="fas fa-home"></i>';
 ?>
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Index</title>
+        
     </head>
-    <body>
+
     <body class="d-flex flex-column">
         <div class="page-content">
 
@@ -20,9 +20,7 @@ $activePageIcon = '<i class="fas fa-home"></i>';
                 </div>
             </div>
 
-
             <?php include './fragments/menu.php'; ?>
-
 
             <div class="container">
                 <div class='row justify-content-center mt-3'>
@@ -49,26 +47,25 @@ $activePageIcon = '<i class="fas fa-home"></i>';
 
                 </div>
 
-
                 <?php
                 foreach ($resultsArray as $row) {
                     $messageID = $row['messageID'];
                     $authorName = getUserNameById($row["authorID"]);
                     $date = $row["date"];
-                    $text = nl2br(htmlspecialchars($row["message"]));
+                    $message = nl2br(htmlspecialchars($row["message"]));
                     ?>
                     <div class='row justify-content-center my-2'>
                         <div class="card" style="width: 36rem;">
                             <div class="card-body">
                                 <h5 class="card-title"><a href='show.php?messageID=<?= $messageID ?>'><?= $authorName ?></a>
-                                    <small class="card-subtitle text-muted">at <?= $date ?></small></h5>
-
-                                <p class="card-text"><?= $text ?></p>
+                                    <small class="card-subtitle text-muted">at <?= $date ?></small>
+                                </h5>
+                                <p class="card-text"><a class="show-link" href='show.php?messageID=<?= $messageID ?>' ><?= $message ?></a></p>
                                 <?php if ((isOwnerOfMessage($messageID)) || $isAdmin): ?>
-                                    <a href='delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
+                                    <a href='message_delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
                                 <?php endif; ?>
                                 <?php if ((isOwnerOfMessage($messageID)) || $isAdmin): ?>
-                                    <a href='edit.php?messageID=<?= $messageID ?>' class="card-link">edit</a>
+                                    <a href='message_edit.php?messageID=<?= $messageID ?>' class="card-link">edit</a>
                                 <?php endif; ?>
                             </div>
                         </div>

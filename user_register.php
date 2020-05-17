@@ -23,7 +23,7 @@ if (userExists($userName) && !isUserNameOwner($userName)) {
 } else {
     if (isset($_POST['userID'])) {
         if ($passwordsMismatch) {
-            header('Location: editUser.php');
+            header('Location: user_edit.php');
             $_SESSION['message'] = "The passwords you provided do not seem to match one another. Try again.";
         } else {
             $userID = $_POST["userID"];

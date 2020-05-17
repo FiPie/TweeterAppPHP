@@ -42,10 +42,10 @@ mysqli_close($con);
 
                         <p class="card-text"><?= nl2br(htmlspecialchars($rowMessage["message"])) ?></p>
                         <?php if ((isOwnerOfMessage($messageID)) || $isAdmin): ?>
-                            <a href='delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
+                            <a href='message_delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
                         <?php endif; ?>
                         <?php if ((isOwnerOfMessage($messageID)) || $isAdmin): ?>
-                            <a href='edit.php?messageID=<?= $messageID ?>' class="card-link">edit</a>
+                            <a href='message_edit.php?messageID=<?= $messageID ?>' class="card-link">edit</a>
                         <?php endif; ?>
                         <a href='index.php' class="card-link">back</a>
                     </div>

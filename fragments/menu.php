@@ -4,7 +4,7 @@ include_once 'config.php';
 $isLogged = isLogged();
 $isAdmin = isAdmin();
 
-$brand = $isLogged ? ("<a class='navbar-brand' href='user.php'>" . $_SESSION["userName"] . "</a>") : '<a class="navbar-brand" href="index.php">Home</a>';
+$brand = $isLogged ? ("<a class='navbar-brand' href='user_dashboard.php'>" . $_SESSION["userName"] . "</a>") : '<a class="navbar-brand" href="index.php">Home</a>';
 
 $current_page = filter_input(INPUT_POST, "page");
 $current_page = (!isset($current_page) || $current_page < 0) ? 0 : $current_page;
@@ -26,6 +26,7 @@ if (count($resultsArray) == 0 && $current_page > 0) {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <!-- Fontawesome -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" integrity="sha256-KzZiKy0DWYsnwMF+X1DvQngQ2/FxF7MF3Ff72XcpuPs=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="css/style.css">
 <!DOCTYPE html>
 
 
@@ -50,7 +51,7 @@ if (count($resultsArray) == 0 && $current_page > 0) {
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="index.php"><i class="fas fa-home"></i> Take me home</a>
                     <?php if ($isLogged): ?>
-                        <a class="dropdown-item" href="add.php"><i class="far fa-comments"></i> New message</a>
+                        <a class="dropdown-item" href="message_add.php"><i class="far fa-comments"></i> New message</a>
                     <?php endif; ?>
                     <div class="dropdown-divider"></div>
                     <?php if (!$isLogged): ?>
@@ -64,7 +65,7 @@ if (count($resultsArray) == 0 && $current_page > 0) {
                     <?php endif; ?>
                     <?php if ($isLogged): ?>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="user.php"><i class="fas fa-user-circle"></i> My account</a>
+                        <a class="dropdown-item" href="user_dashboard.php"><i class="fas fa-user-circle"></i> My account</a>
                     <?php endif; ?>
                     <?php if ($isLogged && $isAdmin): ?>
                         <a class="dropdown-item" href="admin.php"><i class="fas fa-users-cog"></i> Admin Tools</a>
@@ -74,7 +75,7 @@ if (count($resultsArray) == 0 && $current_page > 0) {
         </ul>
         <form class="form-inline my-2 my-lg-0" method="POST" action="index.php">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search" value="<?= $search ?>">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
         </form>
     </div>
 </nav>

@@ -5,7 +5,7 @@ if (!isLogged()) {
     exit();
 }
 
-$activeHref = 'editUser.php';
+$activeHref = 'user_edit.php';
 $activePageIcon = '<i class="fas fa-user-edit"></i>';
 $con = connectDatabase();
 //$user = $_SESSION['userName'];
@@ -51,7 +51,7 @@ if (isset($_SESSION['message'])) {
 
                 <div class='row justify-content-center my-2'>
 
-                    <form action="save_register.php" onsubmit="return passwordOK(this)" method="POST" >
+                    <form action="user_register.php" onsubmit="return passwordOK(this)" method="POST" >
                         <input type="hidden" name="userID" value="<?= $userID ?>">
                         <div class="form-group">
                             <label for="inputUserName">User Name</label>

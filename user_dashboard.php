@@ -5,7 +5,7 @@ if (!isLogged()) {
     exit();
 }
 
-$activeHref = 'user.php';
+$activeHref = 'user_dashboard.php';
 $activePageIcon = '<i class="fas fa-user-circle"></i>';
 $con = connectDatabase();
 $authorID = getUserID();
@@ -44,8 +44,8 @@ $userPosts = mysqli_fetch_all($res, MYSQLI_ASSOC);
                             <p class="card-text">Here you can edit or delete your user account</p>
                         </div>
                         <div class="card-footer text-muted">
-                            <a href='deleteUser.php' onclick="return confirmation()" class="card-link">delete</a>
-                            <a href='editUser.php' class="card-link">edit</a>
+                            <a href='user_delete.php' onclick="return confirmation()" class="card-link">delete</a>
+                            <a href='user_edit.php' class="card-link">edit</a>
                         </div>
                     </div>
 
@@ -64,8 +64,8 @@ $userPosts = mysqli_fetch_all($res, MYSQLI_ASSOC);
                                     <small class="card-subtitle text-muted">at <?= $date ?></small></h5>
 
                                 <p class="card-text"><?= $message ?></p>
-                                <a href='delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
-                                <a href='edit.php?messageID=<?= $messageID ?>' class="card-link">edit</a>
+                                <a href='message_delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
+                                <a href='message_edit.php?messageID=<?= $messageID ?>' class="card-link">edit</a>
                             </div>
                         </div>
                     </div>

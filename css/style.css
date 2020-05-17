@@ -1,0 +1,14 @@
+.show-link{
+    text-decoration: none; 
+    color: black;
+}
+
+.show-link:hover{
+    text-decoration: buttonshadow; 
+    color: buttonshadow;
+}
+
+.show-link:visited{
+    text-decoration:  threedshadow;
+    color: threedshadow;
+}

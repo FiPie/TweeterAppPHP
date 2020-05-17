@@ -5,7 +5,7 @@ if (!isLogged()) {
     exit();
 }
 
-$activeHref = 'add.php';
+$activeHref = 'message_add.php';
 $activePageIcon = '<i class="far fa-comments"></i>';
 ?>
 
@@ -29,7 +29,7 @@ $activePageIcon = '<i class="far fa-comments"></i>';
 
             <div class="container">
                 <div class='row justify-content-center mt-3'>
-                    <form action="save.php" method="POST">
+                    <form action="message_save.php" method="POST">
                         <input type="hidden" name="authorID" value="<?= getUserID(); ?>">
                         <div class="form-group">
                             <label for="inputMessage">Type in your message below</label>
