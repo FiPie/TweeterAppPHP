@@ -1,0 +1,13 @@
+/* HOMEWORK
+
+NEW!
+
+-expand login form 
+-store logged user in session
+-add some BS4 front-end
+-messages author => logged user
+-user simple CRUD
+
+ALL USERS IN DATABASE HAVE PASSWORD: 'aaa'
+
+ */
