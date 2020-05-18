@@ -4,7 +4,7 @@ include_once 'config.php';
 $messageID = filter_input(INPUT_GET, "messageID");
 
 if (!isLogged() || !isOwnerOfMessage($messageID) || !isAdmin()) {
-    header("Location: show.php?messageID=$messageID");
+    header("Location: message_show.php?messageID=$messageID");
     exit();
 }
 

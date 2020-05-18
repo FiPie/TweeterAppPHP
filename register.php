@@ -5,7 +5,7 @@ $activeHref = 'register.php';
 $activePageIcon = '<i class="fas fa-user-plus"></i>';
 
 if (isLogged()) {
-    header("Location: show.php?messageID=$messageID");
+    header("Location: message_show.php?messageID=$messageID");
     exit();
 }
 ?>

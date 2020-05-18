@@ -9,7 +9,7 @@ $authorName = getUserNameById($row["authorID"]);
 $date = $row["date"];
 $message = nl2br(htmlspecialchars($row["message"]));
 
-$activeHref = "show.php?messageID=$messageID";
+$activeHref = "message_show.php?messageID=$messageID";
 $activePageIcon = '<i class="far fa-comment"></i>';
 ?>
 <!DOCTYPE html>
@@ -37,7 +37,7 @@ $activePageIcon = '<i class="far fa-comment"></i>';
                             <h5 class="card-title"><a href='user_messages.php?userID=<?= $authorID ?>'><?= $authorName ?></a>
                                 <small class="card-subtitle text-muted">at <?= $date ?></small>
                             </h5>
-                            <p class="card-text"><a class="show-link" href='show.php?messageID=<?= $messageID ?>' ><?= $message ?></a></p>
+                            <p class="card-text"><a class="show-link" href='message_show.php?messageID=<?= $messageID ?>' ><?= $message ?></a></p>
                             <?php if ((isOwnerOfMessage($messageID)) || $isAdmin): ?>
                                 <a href='message_delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
                             <?php endif; ?>
