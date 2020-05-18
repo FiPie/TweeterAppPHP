@@ -9,6 +9,7 @@ NEW!
 -user simple CRUD
 -likes? ...
 -ADMIN PANEL (user list)
+-connect the project to Remote FTP
 
 ALL USERS IN DATABASE HAVE PASSWORD: 'aaa'
 

@@ -50,6 +50,7 @@ $activePageIcon = '<i class="fas fa-home"></i>';
                 <?php
                 foreach ($resultsArray as $row) {
                     $messageID = $row['messageID'];
+                    $authorID = $row['authorID'];
                     $authorName = getUserNameById($row["authorID"]);
                     $date = $row["date"];
                     $message = nl2br(htmlspecialchars($row["message"]));
@@ -57,7 +58,7 @@ $activePageIcon = '<i class="fas fa-home"></i>';
                     <div class='row justify-content-center my-2'>
                         <div class="card" style="width: 36rem;">
                             <div class="card-body">
-                                <h5 class="card-title"><a href='show.php?messageID=<?= $messageID ?>'><?= $authorName ?></a>
+                                <h5 class="card-title"><a href='user_messages.php?userID=<?= $authorID ?>'><?= $authorName ?></a>
                                     <small class="card-subtitle text-muted">at <?= $date ?></small>
                                 </h5>
                                 <p class="card-text"><a class="show-link" href='show.php?messageID=<?= $messageID ?>' ><?= $message ?></a></p>

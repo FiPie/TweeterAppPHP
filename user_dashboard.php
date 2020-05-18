@@ -53,6 +53,7 @@ $userPosts = mysqli_fetch_all($res, MYSQLI_ASSOC);
                 <?php
                 foreach ($userPosts as $row) {
                     $messageID = $row['messageID'];
+                    $authorID = $row['authorID'];
                     $authorName = getUserNameById($row["authorID"]);
                     $date = $row["date"];
                     $message = $row["message"];
@@ -60,10 +61,10 @@ $userPosts = mysqli_fetch_all($res, MYSQLI_ASSOC);
                     <div class='row justify-content-center my-2'>
                         <div class="card" style="width: 36rem;">
                             <div class="card-body">
-                                <h5 class="card-title"><a href='show.php?messageID=<?= $messageID ?>'><?= $authorName ?></a>
-                                    <small class="card-subtitle text-muted">at <?= $date ?></small></h5>
-
-                                <p class="card-text"><?= $message ?></p>
+                                <h5 class="card-title"><a href='user_messages.php?userID=<?= $authorID ?>'><?= $authorName ?></a>
+                                    <small class="card-subtitle text-muted">at <?= $date ?></small>
+                                </h5>
+                                <p class="card-text"><a class="show-link" href='show.php?messageID=<?= $messageID ?>' ><?= $message ?></a></p>
                                 <a href='message_delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
                                 <a href='message_edit.php?messageID=<?= $messageID ?>' class="card-link">edit</a>
                             </div>

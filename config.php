@@ -25,9 +25,26 @@ function getUserID() {
     return $id;
 }
 
-function getUserNameById($id) {
+function isAdmin() {
+    if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function isLogged() {
+    if (isset($_SESSION['userID'])) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getUserNameById($userID) {
     $con = connectDatabase();
-    $query = "SELECT * FROM users WHERE userID = $id";
+    $userID = mysqli_real_escape_string($con, $userID);
+    $query = "SELECT * FROM users WHERE userID = $userID";
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_assoc($result);
     mysqli_close($con);
@@ -69,19 +86,11 @@ function userExists($userName) {
 function getSearchResult($search, $current_page, $page_size) {
     $first_page_to_show = $current_page * $page_size;
     $con = connectDatabase();
-    //Below SQL line is quite evidently a 'grubymi nicmi' stitched Frankenstein's Monster but it IS my baby ;)
+    //Below SQL line is quite evidently a 'grubymi nicmi' stitched Frankenstein's Monster but it IS my baby;) I have a JOIN overdose problem
     $query = "SELECT messages.* FROM users RIGHT JOIN messages ON users.userID = messages.authorID WHERE messages.message LIKE '%$search%' OR users.userName LIKE '%$search%' ORDER BY `date` DESC LIMIT $first_page_to_show, $page_size";
-    $res = mysqli_query($con, $query);
-    $resultsArray = mysqli_fetch_all($res, MYSQLI_ASSOC);
+    $result = mysqli_query($con, $query);
+    $resultsArray = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $resultsArray;
-}
-
-function isAdmin() {
-    if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == 1) {
-        return true;
-    } else {
-        return false;
-    }
 }
 
 function isUserNameOwner($userName) {
@@ -93,14 +102,6 @@ function isUserNameOwner($userName) {
     mysqli_close($con);
     $userID = $row['userID'];
     if (isset($_SESSION['userID']) && $_SESSION['userID'] == $userID) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-function isLogged() {
-    if (isset($_SESSION['userID'])) {
         return true;
     } else {
         return false;
@@ -119,4 +120,24 @@ function isOwnerOfMessage($messageID) {
     } else {
         return false;
     }
+}
+
+function getMessageByMessageId($messageID) {
+    $con = connectDatabase();
+    $messageID = mysqli_real_escape_string($con, $messageID);
+    $query = "SELECT * FROM messages WHERE messageID = '$messageID'";
+    $result = mysqli_query($con, $query);
+    $row = mysqli_fetch_assoc($result);
+    mysqli_close($con);
+    return $row;
+}
+
+function getAllMessagesByUserId($userID) {
+    $con = connectDatabase();
+    $userID = mysqli_real_escape_string($con, $userID);
+    $query = "SELECT * FROM messages WHERE authorID = '$userID'";
+    $result = mysqli_query($con, $query);
+    $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_close($con);
+    return $row;
 }
