@@ -7,16 +7,15 @@ if (!isLogged()) {
 
 $activeHref = 'user_edit.php';
 $activePageIcon = '<i class="fas fa-user-edit"></i>';
-$con = connectDatabase();
-//$user = $_SESSION['userName'];
-$userID = $_SESSION['userID'];
-$query = "SELECT * FROM `users` WHERE `userID`='$userID'";
-$res = mysqli_query($con, $query);
-$userData = mysqli_fetch_array($res,MYSQLI_ASSOC);
 
-$message = "";
+$userID = getUserID();
+$userData = getUserByUserId($userID);
+$userName = $userData['userName'];
+
+// Message displayed to a user upon error
+$feedback = "";
 if (isset($_SESSION['message'])) {
-    $message = $_SESSION['message'];
+    $feedback = $_SESSION['message'];
     unset($_SESSION['message']);
 }
 ?>
@@ -25,37 +24,35 @@ if (isset($_SESSION['message'])) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>user</title>
+        <title>User Edit</title>
         <script src="js/script.js"></script>
     </head>
+    
     <body class="d-flex flex-column">
         <div class="page-content">
-
+            
             <div class="container">
                 <div class='row justify-content-center'>
-                    <h3>Edit <i><?= $_SESSION['userName'] ?></i></h3>
+                    <h3>Edit <i><?=$userName?></i></h3>
                 </div>
             </div>
-            
-            
             <div class="container">
                 <div class='row justify-content-center'>
-                    <h3><?= $message ?></h3>
+                    <h3><?=$feedback?></h3>
                 </div>
             </div>
 
             <?php include './fragments/menu.php'; ?>
 
             <div class="container">
-
-
                 <div class='row justify-content-center my-2'>
 
                     <form action="user_register.php" onsubmit="return passwordOK(this)" method="POST" >
-                        <input type="hidden" name="userID" value="<?= $userID ?>">
+                        <input type="hidden" name="userID" value="<?=$userID?>">
+                        
                         <div class="form-group">
                             <label for="inputUserName">User Name</label>
-                            <input type="text" name="userName" value="<?= $userData['userName'] ?>" required class="form-control"$_SESSION[' id="inputUserName" aria-describedby="userHelp">
+                            <input type="text" name="userName" value="<?=$userName?>" required class="form-control"$_SESSION[' id="inputUserName" aria-describedby="userHelp">
                             <small id="userHelp" class="form-text text-muted">Please enter your user name.</small>
                         </div>
 
@@ -71,14 +68,9 @@ if (isset($_SESSION['message'])) {
                         </div>
 
                         <button type="submit" class="btn btn-primary">Update</button>
-
                     </form>
 
-
-
-
                 </div>
-
             </div>
         </div>
     </body>

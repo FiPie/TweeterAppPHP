@@ -10,6 +10,7 @@ NEW!
 -likes? ...
 -ADMIN PANEL (user list)
 -connect the project to Remote FTP
+-transform too long messages to limited length text followed by ...
 
 ALL USERS IN DATABASE HAVE PASSWORD: 'aaa'
 

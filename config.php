@@ -137,7 +137,36 @@ function getAllMessagesByUserId($userID) {
     $userID = mysqli_real_escape_string($con, $userID);
     $query = "SELECT * FROM messages WHERE authorID = '$userID'";
     $result = mysqli_query($con, $query);
-    $row = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $resultsArray = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_close($con);
+    return $resultsArray;
+}
+
+function getAllUsers() {
+    $con = connectDatabase();
+    $query = "SELECT userID,userName,isAdmin FROM users";
+    $result = mysqli_query($con, $query);
+    $resultsArray = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    mysqli_close($con);
+    return $resultsArray;
+}
+
+function getUserByUserId($userID){
+    $con = connectDatabase();
+    $userID = mysqli_real_escape_string($con, $userID);
+    $query = "SELECT * FROM users WHERE userID = '$userID'";
+    $result = mysqli_query($con, $query);
+    $row = mysqli_fetch_assoc($result);
     mysqli_close($con);
     return $row;
+}
+
+function deleteUserAndAllUserMessagesByUserId($userID){
+    $con = connectDatabase();
+    $userID = mysqli_real_escape_string($con, $userID);
+    $query = "DELETE FROM users WHERE userID='$userID'";
+    mysqli_query($con, $query);
+    $query = "DELETE FROM messages WHERE authorID='$userID'";
+    mysqli_query($con, $query);
+    mysqli_close($con);
 }

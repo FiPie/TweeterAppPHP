@@ -68,7 +68,7 @@ if (count($resultsArray) == 0 && $current_page > 0) {
                         <a class="dropdown-item" href="user_dashboard.php"><i class="fas fa-user-circle"></i> My account</a>
                     <?php endif; ?>
                     <?php if ($isLogged && $isAdmin): ?>
-                        <a class="dropdown-item" href="admin.php"><i class="fas fa-users-cog"></i> Admin Tools</a>
+                        <a class="dropdown-item" href="admin_dashboard.php"><i class="fas fa-users-cog"></i> Admin Tools</a>
                     <?php endif; ?>
                 </div>
             </li>

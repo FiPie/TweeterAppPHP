@@ -1,18 +1,24 @@
 <?php
 
-session_start();
-if ((isset($_SESSION['logged']) == FALSE) || ($_SESSION['logged'] == FALSE)) {
+include_once 'config.php';
+
+if (!isLogged()) {
     header('Location: index.php');
     exit();
 }
-include_once 'config.php';
-$con = connectDatabase();
-$id = $_SESSION['userID'];
-$author = $_SESSION['userName'];
 
-$query1 = "DELETE FROM users WHERE userID='$id'";
-mysqli_query($con, $query1);
-$query1 = "DELETE FROM messages WHERE author='$author'";
-mysqli_query($con, $query1);
+if (isAdmin() && isset($_POST["userID"])) {
+    $userID = filter_input(INPUT_POST, "userID");
+    $userName = getUserNameById($userID);
+    deleteUserAndAllUserMessagesByUserId($userID);
+    $_SESSION['message'] = "User <i>$userName</i> and all of her/his messages were deleted !";
+    header('Location: admin_dashboard.php');
+    exit();
+} else {
+    $userID = $_SESSION['userID'];
+    deleteUserAndAllUserMessagesByUserId($userID);
+    header('Location: logout.php');
+    exit();
+}
 
-header('Location: logout.php');
+

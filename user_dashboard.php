@@ -7,18 +7,16 @@ if (!isLogged()) {
 
 $activeHref = 'user_dashboard.php';
 $activePageIcon = '<i class="fas fa-user-circle"></i>';
-$con = connectDatabase();
-$authorID = getUserID();
 
-$query = "SELECT * FROM `messages` WHERE `authorID`='$authorID' ORDER BY `date` DESC";
-$res = mysqli_query($con, $query);
-$userPosts = mysqli_fetch_all($res, MYSQLI_ASSOC);
+$userID = getUserID();
+$userName = getUserNameById($userID);
+$userPosts = getAllMessagesByUserId($userID);
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>user</title>
+        <title>User Dashboard</title>
         <script src="js/script.js"></script>
     </head>
     <body class="d-flex flex-column">
@@ -26,7 +24,7 @@ $userPosts = mysqli_fetch_all($res, MYSQLI_ASSOC);
 
             <div class="container">
                 <div class='row justify-content-center'>
-                    <h3>User <i><?= $_SESSION['userName'] ?></i>'s dashboard</h3>
+                    <h3>User <i><?= $userName ?></i>'s dashboard</h3>
                 </div>
             </div>
 
@@ -37,7 +35,7 @@ $userPosts = mysqli_fetch_all($res, MYSQLI_ASSOC);
 
                     <div class="card text-center" style="width: 36rem;">
                         <div class="card-header">
-                            <?= $_SESSION['userName'] ?>
+                            <?= $userName ?>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">Actions</h5>

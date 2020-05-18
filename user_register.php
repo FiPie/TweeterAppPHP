@@ -1,9 +1,9 @@
 <?php
 include_once 'config.php';
 
-$userName = $_POST["userName"];
-$password = $_POST["password"];
-$repassword = $_POST["repassword"];
+$userName = filter_input(INPUT_POST, "userName");
+$password = filter_input(INPUT_POST,"password");
+$repassword = filter_input(INPUT_POST,"repassword");
 
 $passwordsMismatch = ($password != $repassword) ? TRUE : FALSE;
 
@@ -69,7 +69,6 @@ $activePageIcon = '<i class="fas fa-user-plus"></i>';
                     <h3><?= $message1 ?></h3>
                 </div>
             </div>
-
 
             <?php include './fragments/menu.php'; ?>
 

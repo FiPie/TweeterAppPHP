@@ -11,7 +11,7 @@ $authorName = getUserNameById($userID);
 <html>
     <head>
         <meta charset="UTF-8">
-        <title><?=$authorName?>'s messages</title>
+        <title><?= $authorName ?>'s messages</title>
     </head>
 
     <body class="d-flex flex-column">
@@ -25,6 +25,12 @@ $authorName = getUserNameById($userID);
 
             <?php include './fragments/menu.php'; ?>
 
+            <div class="container">
+                <div class='row justify-content-center'>
+                    <h3><?= count($userMessagesArray) == 0 ?"It looks that <i>$authorName</i> has not yet written anything <a href='#' onclick='history.back()'>back</a>":"" ?></h3>
+                </div>
+            </div>
+            
             <div class="container">
                 <?php
                 foreach ($userMessagesArray as $row) {

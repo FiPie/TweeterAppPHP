@@ -13,8 +13,10 @@ if (isLogged()) {
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>registration</title>
+        <title>Registration</title>
+        <script src="js/script.js"></script>
     </head>
+    
     <body class="d-flex flex-column">
         <div class="page-content">
 
@@ -24,10 +26,8 @@ if (isLogged()) {
                 </div>
             </div>
 
-
             <?php include './fragments/menu.php'; ?>
 
-<!--            <script src="js/script.js"></script>-->
             <div class="container">
                 <div class='row justify-content-center mt-3'>
 
