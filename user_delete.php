@@ -12,6 +12,7 @@ if (isAdmin() && isset($_POST["userID"])) {
     $userName = getUserNameById($userID);
     deleteUserAndAllUserMessagesByUserId($userID);
     $_SESSION['message'] = "User <i>$userName</i> and all of her/his messages were deleted !";
+    $_SESSION['message_type'] = "text-success";
     header('Location: admin_dashboard.php');
     exit();
 } else {

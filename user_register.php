@@ -2,8 +2,8 @@
 include_once 'config.php';
 
 $userName = filter_input(INPUT_POST, "userName");
-$password = filter_input(INPUT_POST,"password");
-$repassword = filter_input(INPUT_POST,"repassword");
+$password = filter_input(INPUT_POST, "password");
+$repassword = filter_input(INPUT_POST, "repassword");
 
 $passwordsMismatch = ($password != $repassword) ? TRUE : FALSE;
 
@@ -16,17 +16,27 @@ $con = connectDatabase();
 $userName = mysqli_real_escape_string($con, $userName);
 
 
-if (userExists($userName) && !isUserNameOwner($userName)) {
+if (userExists($userName) && (!isUserNameOwner($userName) || isAdmin())) {
     mysqli_close($con);
-    $message1 = "Sorry but the user name <i>$userName</i> is already taken!";
-    $message2 = "Try again with another user name." . '<a href="register.php"> Sign up</a>';
+    if (isAdmin()) {
+        $_SESSION['message'] = "The user name: <i>$userName</i> is already in use. Try another name.";
+        $_SESSION['message_type'] = "text-danger";
+        $userID = filter_input(INPUT_POST, "userID");
+        $_SESSION['adminData_UserId'] = "$userID";
+        header('Location: user_edit.php');
+        exit();
+    } else {
+        $message1 = "Sorry but the user name <i>$userName</i> is already taken!";
+        $message2 = "Try again with another user name." . '<a href="register.php"> Sign up</a>';
+    }
 } else {
     if (isset($_POST['userID'])) {
         if ($passwordsMismatch) {
-            header('Location: user_edit.php');
             $_SESSION['message'] = "The passwords you provided do not seem to match one another. Try again.";
+            $_SESSION['message_type'] = "text-danger";
+            header('Location: user_edit.php');
         } else {
-            $userID = $_POST["userID"];
+            $userID = filter_input(INPUT_POST, "userID");
             $oldName = $_SESSION['userName'];
             $query1 = "UPDATE users SET userName= '$userName', password= '$encrypted_pass' WHERE userID= '$userID'";
             mysqli_query($con, $query1);
@@ -59,7 +69,7 @@ $activePageIcon = '<i class="fas fa-user-plus"></i>';
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Register Feedback</title>
     </head>
     <body class="d-flex flex-column">
         <div class="page-content">
@@ -77,6 +87,7 @@ $activePageIcon = '<i class="fas fa-user-plus"></i>';
                     <h3><?= $message2 ?> </h3>
                 </div>
             </div
+            
         </div>
     </body>
 </html>

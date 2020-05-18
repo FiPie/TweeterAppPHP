@@ -14,9 +14,12 @@ $userList = getAllUsers();
 
 // Message displayed to a user upon error
 $feedback = "";
+$type = "";
 if (isset($_SESSION['message'])) {
     $feedback = $_SESSION['message'];
+    $type = $_SESSION['message_type'];
     unset($_SESSION['message']);
+    unset($_SESSION['message_type']);
 }
 ?>
 <!DOCTYPE html>
@@ -35,8 +38,8 @@ if (isset($_SESSION['message'])) {
                 </div>
             </div>
             <div class="container">
-                <div class='row justify-content-center'>
-                    <h3><?=$feedback?></h3>
+                <div class='row justify-content-center <?= $type ?>'>
+                    <h3><?= $feedback ?></h3>
                 </div>
             </div>
 
@@ -73,9 +76,13 @@ if (isset($_SESSION['message'])) {
                                     <small class="card-subtitle text-muted"> ( has<?= $isAdmin == 1 ? " got " : "n't got "; ?>Admin privileges )</small>
                                 </h5>
                                 <p class="card-text"> ... </p>
-                                
+
                                 <a href='user_messages.php?userID=<?= $userID ?>' class="card-link">messages</a>
-                                <a href='admin_edit.php?userID=<?= $userID ?>' class="card-link">edit</a>
+
+                                <form action="user_edit.php" method="POST" style="display: inline" >
+                                    <input type="hidden" name="userID" value="<?= $userID ?>">
+                                    <button class="btn btn-link card-link ml-1" style="margin-bottom: 5px" type="submit">edit</button>
+                                </form>
 
                                 <form action="user_delete.php" method="POST" style="display: inline" onsubmit="return userDeleteConfirmation('<?= $userName ?>')">
                                     <input type="hidden" name="userID" value="<?= $userID ?>">

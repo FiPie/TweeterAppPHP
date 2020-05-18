@@ -8,10 +8,14 @@ if (isLogged()) {
     header('Location: index.php');
     exit();
 }
-$message = "";
+// Message displayed to a user upon error
+$feedback = "";
+$type = "";
 if (isset($_SESSION['message'])) {
-    $message = $_SESSION['message'];
+    $feedback = $_SESSION['message'];
+    $type = $_SESSION['message_type'];
     unset($_SESSION['message']);
+    unset($_SESSION['message_type']);
 }
 ?>
 <!DOCTYPE html>
@@ -31,8 +35,8 @@ if (isset($_SESSION['message'])) {
             </div>
             
             <div class="container">
-                <div class='row justify-content-center'>
-                    <h3><?= $message ?></h3>
+                <div class='row justify-content-center <?= $type ?>'>
+                    <h3><?= $feedback ?></h3>
                 </div>
             </div>
 

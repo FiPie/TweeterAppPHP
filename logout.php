@@ -8,6 +8,7 @@ unset($_SESSION['isAdmin']);
 if (isset($_SESSION['redirect']) && $_SESSION['redirect'] == TRUE) {
     unset($_SESSION['redirect']);
     $_SESSION['message'] = "Your account was successfully updated. Please log in with your new credentials";
+    $_SESSION['message_type'] = "text-success";
     header('Location: login.php');
     exit();
 }
