@@ -45,7 +45,7 @@ $authorName = getUserNameById($userID);
                         <div class="card" style="width: 36rem;">
                             <div class="card-body">
                                 <h5 class="card-title"><a href='user_messages.php?userID=<?= $authorID ?>'><?= $authorName ?></a>
-                                    <small class="card-subtitle text-muted">at <?= $date ?></small>
+                                    <small class="card-subtitle text-muted"> on <?= $date ?></small>
                                 </h5>
                                 <p class="card-text"><a class="show-link" href='message_show.php?messageID=<?= $messageID ?>' title="preview" data-toggle="popover" data-trigger="hover" data-content="<?= $message ?>"><?= ellipsis($message) ?></a></p>
                                 <?php if ((isOwnerOfMessage($messageID)) || $isAdmin): ?>
