@@ -1,4 +1,5 @@
 <?php
+
 include_once 'config.php';
 
 $authorID = filter_input(INPUT_POST, "authorID");
@@ -16,4 +17,8 @@ mysqli_query($con, $query);
 
 mysqli_close($con);
 
-header('Location: index.php');
+if (isAdmin()) {
+    header("Location: user_messages.php?userID=$authorID");
+} else {
+    header('Location: index.php');
+}

@@ -17,7 +17,7 @@ $userPosts = getAllMessagesByUserId($userID);
     <head>
         <meta charset="UTF-8">
         <title>User Dashboard</title>
-        <script src="js/script.js"></script>
+        
     </head>
     <body class="d-flex flex-column">
         <div class="page-content">
@@ -62,7 +62,7 @@ $userPosts = getAllMessagesByUserId($userID);
                                 <h5 class="card-title"><a href='user_messages.php?userID=<?= $authorID ?>'><?= $authorName ?></a>
                                     <small class="card-subtitle text-muted">at <?= $date ?></small>
                                 </h5>
-                                <p class="card-text"><a class="show-link" href='message_show.php?messageID=<?= $messageID ?>' ><?= $message ?></a></p>
+                                <p class="card-text"><a class="show-link" href='message_show.php?messageID=<?= $messageID ?>' title="Tip" data-toggle="popover" data-trigger="hover" data-content="Click to see the whole message"><?= $message ?></a></p>
                                 <a href='message_delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
                                 <a href='message_edit.php?messageID=<?= $messageID ?>' class="card-link">edit</a>
                             </div>

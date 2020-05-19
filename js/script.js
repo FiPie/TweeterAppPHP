@@ -21,3 +21,7 @@ function userDeleteConfirmation(userName) {
     let name = userName;
     return confirm("Are you sure you want to delete <b>" + name + "</b>?");
 }
+
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();   
+});

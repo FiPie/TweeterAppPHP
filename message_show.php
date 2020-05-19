@@ -3,7 +3,7 @@ include_once 'config.php';
 
 $messageID = filter_input(INPUT_GET, "messageID");
 $row = getMessageByMessageId($messageID);
-$messageID = $row['messageID'];
+
 $authorID = $row['authorID'];
 $authorName = getUserNameById($row["authorID"]);
 $date = $row["date"];

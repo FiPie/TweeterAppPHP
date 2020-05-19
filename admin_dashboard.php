@@ -27,7 +27,7 @@ if (isset($_SESSION['message'])) {
     <head>
         <meta charset="UTF-8">
         <title>Admin Dashboard</title>
-        <script src="js/script.js"></script>
+        
     </head>
     <body class="d-flex flex-column">
         <div class="page-content">

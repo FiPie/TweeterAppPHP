@@ -12,6 +12,7 @@ $authorName = getUserNameById($userID);
     <head>
         <meta charset="UTF-8">
         <title><?= $authorName ?>'s messages</title>
+        
     </head>
 
     <body class="d-flex flex-column">
@@ -46,9 +47,9 @@ $authorName = getUserNameById($userID);
                                 <h5 class="card-title"><a href='user_messages.php?userID=<?= $authorID ?>'><?= $authorName ?></a>
                                     <small class="card-subtitle text-muted">at <?= $date ?></small>
                                 </h5>
-                                <p class="card-text"><a class="show-link" href='message_show.php?messageID=<?= $messageID ?>' ><?= $message ?></a></p>
+                                <p class="card-text"><a class="show-link" href='message_show.php?messageID=<?= $messageID ?>' title="Tip" data-toggle="popover" data-trigger="hover" data-content="Click to see the whole message"><?= ellipsis($message) ?></a></p>
                                 <?php if ((isOwnerOfMessage($messageID)) || $isAdmin): ?>
-                                    <a href='message_delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
+                                <a href='message_delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
                                 <?php endif; ?>
                                 <?php if ((isOwnerOfMessage($messageID)) || $isAdmin): ?>
                                     <a href='message_edit.php?messageID=<?= $messageID ?>' class="card-link">edit</a>
@@ -61,6 +62,6 @@ $authorName = getUserNameById($userID);
 
         </div>
 
-        <script src="js/script.js"></script>
+        
     </body>
 </html>

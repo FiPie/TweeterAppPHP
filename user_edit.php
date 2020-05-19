@@ -38,7 +38,7 @@ if (isset($_SESSION['message'])) {
     <head>
         <meta charset="UTF-8">
         <title>User Edit</title>
-        <script src="js/script.js"></script>
+        
     </head>
 
     <body class="d-flex flex-column">
@@ -81,6 +81,8 @@ if (isset($_SESSION['message'])) {
                         </div>
 
                         <button type="submit" class="btn btn-primary">Update</button>
+                        <a href="#" onclick="history.back()"><button type="button" class="btn btn-secondary">Back</button></a>
+                    
                     </form>
 
                 </div>

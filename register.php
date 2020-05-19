@@ -14,7 +14,7 @@ if (isLogged()) {
     <head>
         <meta charset="UTF-8">
         <title>Registration</title>
-        <script src="js/script.js"></script>
+        
     </head>
     
     <body class="d-flex flex-column">

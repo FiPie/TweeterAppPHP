@@ -42,7 +42,7 @@ if (isset($_SESSION['message'])) {
 
             <?php include './fragments/menu.php'; ?>
 
-            <script src="js/script.js"></script>
+            
             <div class="container">
                 <div class='row justify-content-center mt-3'>
 

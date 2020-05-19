@@ -60,7 +60,7 @@ mysqli_close($con);
                             <textarea name="message" rows="10" cols="80" required class="form-control rounded-0" id="inputMessage" placeholder="What's on your mind? Tell the world now!"><?= $message ?></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Update</button>
-                        <a href="index.php"><button type="button" class="btn btn-secondary">Back</button></a>
+                        <a href="#" onclick="history.back()"><button type="button" class="btn btn-secondary">Back</button></a>
                     </form>
                     
                 </div>

@@ -151,7 +151,7 @@ function getAllUsers() {
     return $resultsArray;
 }
 
-function getUserByUserId($userID){
+function getUserByUserId($userID) {
     $con = connectDatabase();
     $userID = mysqli_real_escape_string($con, $userID);
     $query = "SELECT * FROM users WHERE userID = '$userID'";
@@ -161,7 +161,7 @@ function getUserByUserId($userID){
     return $row;
 }
 
-function deleteUserAndAllUserMessagesByUserId($userID){
+function deleteUserAndAllUserMessagesByUserId($userID) {
     $con = connectDatabase();
     $userID = mysqli_real_escape_string($con, $userID);
     $query = "DELETE FROM users WHERE userID='$userID'";
@@ -169,4 +169,8 @@ function deleteUserAndAllUserMessagesByUserId($userID){
     $query = "DELETE FROM messages WHERE authorID='$userID'";
     mysqli_query($con, $query);
     mysqli_close($con);
+}
+
+function ellipsis($string) {
+    return strlen($string) > 50 ? substr($string, 0, 70) . "..." : $string;
 }
