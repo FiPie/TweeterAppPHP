@@ -46,8 +46,15 @@ $activePageIcon = '<i class="fas fa-home"></i>';
                     </ul>
 
                 </div>
-
                 <?php
+                if(count($resultsArray) == 0){ ?>
+                    <div class='row justify-content-center my-2'>
+                        <h5>No results for your search query <b><?= $search ?></b></h5>
+                    </div>
+                <?php } ?>
+                
+                <?php
+                
                 foreach ($resultsArray as $row) {
                     $messageID = $row['messageID'];
                     $authorID = $row['authorID'];
@@ -61,7 +68,7 @@ $activePageIcon = '<i class="fas fa-home"></i>';
                                 <h5 class="card-title"><a href='user_messages.php?userID=<?= $authorID ?>'><?= $authorName ?></a>
                                     <small class="card-subtitle text-muted">at <?= $date ?></small>
                                 </h5>
-                                <p class="card-text"><a class="show-link" href='message_show.php?messageID=<?= $messageID ?>' title="Tip" data-toggle="popover" data-trigger="hover" data-content="Click to see the whole message"><?= ellipsis($message); ?></a></p>
+                                <p class="card-text"><a class="show-link" href='message_show.php?messageID=<?= $messageID ?>' title="preview - click to open" data-toggle="popover" data-trigger="hover" data-content="<?= $message ?>"><?= ellipsis($message); ?></a></p>
                                 <?php if ((isOwnerOfMessage($messageID)) || $isAdmin): ?>
                                     <a href='message_delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
                                 <?php endif; ?>

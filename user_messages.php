@@ -47,7 +47,7 @@ $authorName = getUserNameById($userID);
                                 <h5 class="card-title"><a href='user_messages.php?userID=<?= $authorID ?>'><?= $authorName ?></a>
                                     <small class="card-subtitle text-muted">at <?= $date ?></small>
                                 </h5>
-                                <p class="card-text"><a class="show-link" href='message_show.php?messageID=<?= $messageID ?>' title="Tip" data-toggle="popover" data-trigger="hover" data-content="Click to see the whole message"><?= ellipsis($message) ?></a></p>
+                                <p class="card-text"><a class="show-link" href='message_show.php?messageID=<?= $messageID ?>' title="preview" data-toggle="popover" data-trigger="hover" data-content="<?= $message ?>"><?= ellipsis($message) ?></a></p>
                                 <?php if ((isOwnerOfMessage($messageID)) || $isAdmin): ?>
                                 <a href='message_delete.php?messageID=<?= $messageID ?>' onclick="return confirmation()" class="card-link">delete</a>
                                 <?php endif; ?>
