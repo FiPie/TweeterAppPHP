@@ -12,6 +12,9 @@ NEW!
 -connect the project to Remote FTP
 -transform too long messages to limited length text followed by ...
 -popovers on hover
+-image storing functionality
+-secure with .htaccess and image getting functions
+-no closed php tags!
 
 ALL USERS IN DATABASE HAVE PASSWORD: 'aaa'
 
