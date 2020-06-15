@@ -31,12 +31,15 @@ $activePageIcon = '<i class="far fa-comments"></i>';
                 <div class='row justify-content-center mt-3'>
                     <form action="message_save.php" method="POST" enctype="multipart/form-data">
                         <input type="hidden" name="authorID" value="<?= getUserID(); ?>">
+                        
                         <div class="form-group">
                             <label for="inputMessage">Type in your message below</label>
                             <textarea name="message" rows="10" cols="80" required class="form-control rounded-0" id="inputMessage" placeholder="What's on your mind? Tell the world now!"></textarea>
                         </div>
+                        
                         <input type="hidden" name="MAX_FILE_SIZE" value="10000000">
                         <input type="file" name="image" accept="image/*">
+                        
                         <button type="submit" class="btn btn-primary">Post</button>
                     </form>
                 </div>

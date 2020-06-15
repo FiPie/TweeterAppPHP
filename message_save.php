@@ -20,7 +20,7 @@ mysqli_query($con, $query);
 $id = mysqli_insert_id($con);
 
 //Add the image file to the images subdirectory - this directory must be writable 
-if (isset($_FILES["image"])) {
+if (isset($_FILES["image"]) && $_FILES["image"]["tmp_name"] != "") {
     $source = $_FILES["image"]["tmp_name"];
     $mimeType = mime_content_type($source);
     //here we should secure against unwanted mimeTypes
