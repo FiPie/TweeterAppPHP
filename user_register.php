@@ -2,10 +2,16 @@
 include_once 'config.php';
 
 $userName = filter_input(INPUT_POST, "userName");
+
 $password = filter_input(INPUT_POST, "password");
 $repassword = filter_input(INPUT_POST, "repassword");
 
-$passwordsMismatch = ($password != $repassword) ? TRUE : FALSE;
+
+if ((!isset($_POST['password']) && (!isset($_POST['repassword']))) && isAdmin()) {
+    $passwordsMismatch = FALSE;
+} else {
+    $passwordsMismatch = ($password != $repassword) ? TRUE : FALSE;
+}
 
 $salt_temp = str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
 $salt = '$2a$10$' . substr($salt_temp, 0, 22);
@@ -16,16 +22,16 @@ $con = connectDatabase();
 $userName = mysqli_real_escape_string($con, $userName);
 
 
-if (userExists($userName) && (!isUserNameOwner($userName) || isAdmin())) {
+if ((userExists($userName) && !isUserNameOwner($userName)) && (!isAdmin() )) {
     mysqli_close($con);
-    if (isAdmin()) {
+    if (isAdmin() && isUserNameOwner($userName)) {
         $_SESSION['message'] = "The user name: <i>$userName</i> is already in use. Try another name.";
         $_SESSION['message_type'] = "text-danger";
         $userID = filter_input(INPUT_POST, "userID");
         $_SESSION['adminData_UserId'] = "$userID";
         header('Location: user_edit.php');
         exit();
-    } else {
+    } elseif (!isAdmin() && isUserNameOwner($userName)) {
         $message1 = "Sorry but the user name <i>$userName</i> is already taken!";
         $message2 = "Try again with another user name." . '<a href="register.php"> Sign up</a>';
     }
@@ -43,6 +49,20 @@ if (userExists($userName) && (!isUserNameOwner($userName) || isAdmin())) {
             $query2 = "UPDATE messages SET authorID= '$userName' WHERE messages.authorID= '$oldName'";
             mysqli_query($con, $query2);
             $_SESSION['redirect'] = TRUE;
+
+            if (isset($_POST['admin'])) {
+                $isAdmin = (filter_input(INPUT_POST, "admin") == 'on' ? 1 : 0);
+//                var_dump($isAdmin);
+//                exit();
+                $query3 = "UPDATE users SET isAdmin= '$isAdmin' WHERE userID= '$userID'";
+                mysqli_query($con, $query3);
+                mysqli_close($con);
+                header('Location: admin_dashboard.php');
+            }
+            if(isAdmin()){
+                mysqli_close($con);
+                header('Location: admin_dashboard.php');
+            }
             mysqli_close($con);
             header('Location: logout.php');
         }
@@ -87,7 +107,7 @@ $activePageIcon = '<i class="fas fa-user-plus"></i>';
                     <h3><?= $message2 ?> </h3>
                 </div>
             </div
-            
+
         </div>
     </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 include_once 'config.php';
-if (!isLogged()) {
+if (!isLogged() || isAdmin()) {
     header('Location: index.php');
     exit();
 }

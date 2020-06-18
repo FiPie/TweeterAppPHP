@@ -60,7 +60,7 @@ if (isset($_SESSION['message'])) {
             <div class="container">
                 <div class='row justify-content-center my-2'>
 
-                    <form action="user_register.php" onsubmit="return passwordOK(this)" method="POST" >
+                    <form action="user_register.php" <?php if (!$isAdmin){ echo "onsubmit='return passwordOK(this)'";} ?>  method="POST" >
                         <input type="hidden" name="userID" value="<?= $userID ?>">
 
                         <div class="form-group">
@@ -71,15 +71,21 @@ if (isset($_SESSION['message'])) {
 
                         <div class="form-group">
                             <label for="password1">New Password</label>
-                            <input type="password" name="password" required class="form-control" id="password1" placeholder="Enter new password">
+                            <input type="password" name="password" <?php if (!$isAdmin){ echo "required";} ?> class="form-control" id="password1" placeholder="Enter new password">
                         </div>
 
                         <div class="form-group">
                             <label for="password2">Confirm password</label>
-                            <input type="password" name="repassword" required class="form-control" id="password2" placeholder="Re-enter password">
+                            <input type="password" name="repassword" <?php if (!$isAdmin){ echo "required";} ?> class="form-control" id="password2" placeholder="Re-enter password">
                             <small id="Help" class="form-text text-muted">After update you will be required to log in again with new credentials</small>
                         </div>
-
+                        <?php if ($isLogged && $isAdmin): ?>
+                        <div class="form-group">
+                            <label for="admin">Admin privilege</label>
+                            <input type="checkbox" name="admin" class="form-control" id="admin" placeholder="">
+                            <small id="Help2" class="form-text text-muted">This will give the user privileges</small>
+                        </div>
+                        <?php endif; ?>
                         <button type="submit" class="btn btn-primary">Update</button>
                         <a href="#" onclick="history.back()"><button type="button" class="btn btn-secondary">Back</button></a>
                     

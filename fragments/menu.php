@@ -51,7 +51,7 @@ if (count($resultsArray) == 0 && $current_page > 0) {
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="index.php"><i class="fas fa-home"></i> Take me home</a>
-                    <?php if ($isLogged): ?>
+                    <?php if ($isLogged && !$isAdmin): ?>
                         <a class="dropdown-item" href="message_add.php"><i class="far fa-comments"></i> New message</a>
                     <?php endif; ?>
                     <div class="dropdown-divider"></div>
