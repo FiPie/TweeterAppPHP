@@ -191,6 +191,4 @@ function getImageSrc($messageID) {
     } else {
         return "";
     }
-}
-
-function 
+} 
