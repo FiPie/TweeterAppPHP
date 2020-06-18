@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/C1644-SpringBoot/xampp/htdocs/TweeterAppPHP/README.md</file>
+            <file>file:/C:/C1644-SpringBoot/xampp/htdocs/TweeterAppPHP/message_edit.php</file>
+            <file>file:/C:/C1644-SpringBoot/xampp/htdocs/TweeterAppPHP/message_delete.php</file>
+            <file>file:/C:/C1644-SpringBoot/xampp/htdocs/TweeterAppPHP/message_save.php</file>
+            <file>file:/C:/C1644-SpringBoot/xampp/htdocs/TweeterAppPHP/message_update.php</file>
+            <file>file:/C:/C1644-SpringBoot/xampp/htdocs/TweeterAppPHP/message_add.php</file>
+        </group>
     </open-files>
 </project-private>

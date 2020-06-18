@@ -23,15 +23,21 @@ $id = mysqli_insert_id($con);
 if (isset($_FILES["image"]) && $_FILES["image"]["tmp_name"] != "") {
     $source = $_FILES["image"]["tmp_name"];
     $mimeType = mime_content_type($source);
+//    var_dump(strpos($mimeType, 'image'));
+//    exit();
     //here we should secure against unwanted mimeTypes
-    $split = explode("/", $mimeType);
-
-    $dest = "./images/img" . $id . ".".$split[1];
-    $canWrite = move_uploaded_file($source, $dest);
-
-    if (!$canWrite) {
-        echo "Can not write to the images subdirectory";
+    if (strpos($mimeType, 'image') === false) {
+        echo "Wrong mime type";
         die();
+    } else {
+        $split = explode("/", $mimeType);
+        $dest = "./images/img" . $id . "." . $split[1];
+        $canWrite = move_uploaded_file($source, $dest);
+
+        if (!$canWrite) {
+            echo "Can not write to the images subdirectory";
+            die();
+        }
     }
 }
 
