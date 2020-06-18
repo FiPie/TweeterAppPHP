@@ -65,6 +65,7 @@ mysqli_close($con);
 
                         <?php if ($source) : ?>
                             <img class="card-img pt-2 mt-2" src="<?= $source ?>" alt="Card image cap">
+                            <input type="hidden" name="oldfile" value="<?= $source ?>">
                         <?php endif; ?>
 
                         <div class="form-group">

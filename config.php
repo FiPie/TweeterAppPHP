@@ -174,3 +174,23 @@ function deleteUserAndAllUserMessagesByUserId($userID) {
 function ellipsis($string) {
     return strlen($string) > 50 ? substr($string, 0, 70) . "..." : $string;
 }
+
+function hasImage($messageID) {
+    if (glob("./images/img$messageID.*") != null) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function getImageSrc($messageID) {
+    if (hasImage($messageID)) {
+        $list = glob("./images/img$messageID.*");
+        $src = $list[0];
+        return $src;
+    } else {
+        return "";
+    }
+}
+
+function 
