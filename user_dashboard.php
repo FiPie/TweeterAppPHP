@@ -69,7 +69,8 @@ $userPosts = getAllMessagesByUserId($userID);
                                 </h5>
                             </div>
                             <?php if ($source) : ?>
-                                <img class="card-img-top" src="<?= $source ?>" alt="Card image cap">
+<!--                                <img class="card-img-top" src="<?= $source ?>" alt="Card image cap">-->
+                                <img class="card-img-top" src="serveImage.php?id=<?= $messageID ?>" alt="served image cap">
                             <?php endif; ?>
 
                             <div class="card-body pt-0 mt-0">

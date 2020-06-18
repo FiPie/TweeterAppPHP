@@ -64,8 +64,9 @@ mysqli_close($con);
                         <input type="hidden" name="authorID" value="<?= $authorID ?>"">
 
                         <?php if ($source) : ?>
-                            <img class="card-img pt-2 mt-2" src="<?= $source ?>" alt="Card image cap">
+<!--                            <img class="card-img pt-2 mt-2" src="<?= $source ?>" alt="Card image cap">-->
                             <input type="hidden" name="oldfile" value="<?= $source ?>">
+                            <img class="card-img-top" src="serveImage.php?id=<?= $messageID ?>" alt="served image cap">
                         <?php endif; ?>
 
                         <div class="form-group">

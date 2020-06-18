@@ -1,0 +1,5 @@
+Options -Indexes
+Options -Multiviews
+AddDefaultCharset UTF-8
+ServerSignature Off
+FileETag none
